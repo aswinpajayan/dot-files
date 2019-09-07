@@ -1,3 +1,4 @@
 # dot-files
-configs for vim,tmux 
-Dot files i use in my machine
+configs for nvim, tmux
+
+Uses Vim plug for installing plugins 
