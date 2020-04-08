@@ -30,7 +30,7 @@ Plug 'chrisbra/replay'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sonph/onehalf' ,  {'rtp': 'vim/'}
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 "Plug 'lokaltog/vim-powerline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kaicataldo/material.vim'
@@ -40,7 +40,6 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'nvie/vim-flake8'
 "Plug 'dense-analysis/ale'
 call plug#end()
-
 
    set mouse=a
    if (has('termguicolors'))
@@ -52,9 +51,9 @@ call plug#end()
    set t_Co=256
    colorscheme material
    let g:material_theme_style = 'default'
-"{{{------------------settings for cursorline highlight----------------
-   set cursorline
-   hi CursorLine term=none cterm=bold ctermbg=black guibg=gray40
+"{{{------------------settings for cursorline highlight---------------- 
+set cursorline 
+hi CursorLine term=none cterm=bold ctermbg=black guibg=gray18
 "--------------------------------------------------------------------}}}
    set foldmethod=syntax
 
@@ -175,47 +174,55 @@ map vt <Esc>:TagbarToggle<CR>
 
 "" Configuring status line in place of airline 
 set ruler
-set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
-set statusline=%<%f%h%m%r%=%{strftime(\"%l:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}\ %{&ff}\ %l,%c%V\ %P
+"set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
+"set statusline=%<%f%h%m%r%=%{strftime(\"%l:%M:%S\ \%p,\ %a\ %b\ %d,\ %Y\")}\ %{&ff}\ %l,%c%V\ %P
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 set foldmethod=syntax
 set nofoldenable
 "{{{--------------------airline configs---------------------
 
-"let g:airline_section_b = '%{strftime("%H:%M")}'
-"let g:airline_section_y = 'BN:%{bufnr("%")}'
-"" air-line
-"let g:airline_powerline_fonts = 1
-"" air-line
-"let g:airline_powerline_fonts = 1
-"
-"if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-"endif
-"
-"" unicode symbols
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.whitespace = 'Ξ'
-"
-"" airline symbols
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
-"
-"let g:airline_theme='papercolor'
-"}}}
+set encoding=UTF-8
+
+let g:airline_section_b = '%{strftime("%a\ %b\ %e\ %I:%M\ %p")}'
+
+let g:airline_section_y = 'BN:%{bufnr("%")}'
+let g:airline_section_z = '%3p%% %l:%c'
+" air-line
+let g:airline_powerline_fonts = 1
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+let g:neomake_warning_sign = {
+       \   'text': '',
+       \   'texthl': 'NeomakeWarningSign',
+       \ }
+let g:airline_detect_whitespace=0
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_theme='material'
