@@ -35,10 +35,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kaicataldo/material.vim'
 Plug 'vim-scripts/latex-support.vim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'iberianpig/ranger-explorer.vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'nvie/vim-flake8'
 "Plug 'dense-analysis/ale'
+Plug 'jaxbot/browserlink.vim'
+"Plugin for web dev
 call plug#end()
 
    set mouse=a
@@ -54,8 +57,12 @@ call plug#end()
 "{{{------------------settings for cursorline highlight---------------- 
 set cursorline 
 hi CursorLine term=none cterm=bold ctermbg=black guibg=gray18
+hi Normal ctermbg=NONE guibg=NONE
 "--------------------------------------------------------------------}}}
    set foldmethod=syntax
+"{{{----------------using terminal in vim , terminal mode rebinds----
+tnoremap <esc><esc> <c-\><c-n>
+"--------------------------------------------------------------------}}}
 
 "{{{-----------------ale linr settings -------------------------------
 "let g:ale_linters_explicit = 1
@@ -187,7 +194,7 @@ set encoding=UTF-8
 let g:airline_section_b = '%{strftime("%a\ %b\ %e\ %I:%M\ %p")}'
 
 let g:airline_section_y = 'BN:%{bufnr("%")}'
-let g:airline_section_z = '%3p%% %l:%c'
+let g:airline_section_z = 'ﴜ:%2p%%  %l:%c'
 " air-line
 let g:airline_powerline_fonts = 1
 " air-line
@@ -226,3 +233,20 @@ let g:neomake_warning_sign = {
 let g:airline_detect_whitespace=0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme='material'
+
+"""{{{-------------Ranger vim settings----------
+let g:ranger_explorer_keymap_edit    = '<C-o>'
+let g:ranger_explorer_keymap_tabedit = '<C-t>'
+let g:ranger_explorer_keymap_split   = '<C-s>'
+let g:ranger_explorer_keymap_vsplit  = '<C-v>'
+let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
+nnoremap rnc <Esc>:RangerOpenCurrentDir<CR>
+nnoremap rnp <Esc>:RangerOpenProjectRootDir<CR>
+
+"""------------------------------------------}}}
+""------------Congfig for browserlink---------"""
+""node needs to be installed for this to work"""
+nnoremap bt <Esc>o<script src='http://127.0.0.1:9001/js/socket.js'></script><CR><Esc>
+
