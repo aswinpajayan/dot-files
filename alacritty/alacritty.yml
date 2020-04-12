@@ -34,8 +34,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 0
-    y: 0
+    x: 5
+    y: 5
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: false
@@ -49,7 +49,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: full
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -187,7 +187,7 @@ font:
 draw_bold_text_with_bright_colors: true
 
 
-# Colors (Materinal Theme)
+# Colors (Material Theme)
 colors:
   # Default colors
   primary:
@@ -295,7 +295,7 @@ visual_bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 0.96
 
 # Mouse bindings
 #
