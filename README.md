@@ -3,6 +3,8 @@ configs for nvim, tmux,awesomewm, rofi, i3color-lock
 
 Uses Vim plug for installing plugins 
 Got some time to try out some configs..
+Many of these files are adapted from internet
+Thier license and author information are left as such
 
 # Nvim configs
 Was having trouble with vim devicons and vim airline.. 
