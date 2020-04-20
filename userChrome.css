@@ -1,0 +1,72 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/*
+ * Hide tabs on Linux, Windows, any with titlebar.
+ * Doesn't work right with MacOS, use the other one instead
+ *
+ * Contributor(s): Isaac-Newt
+ */
+/* Hide the whole toolbar area unless urlbar is focused or cursor is over the toolbar */
+/* Dimensions on non-Win10 OS probably needs to be adjusted */
+
+/* path  /home/aswin/.mozilla/firefox/v4w2wmp8.default-release/chrome/userChrome.css*/
+@media (-moz-os-version: windows-win10){
+
+  :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 10px !important; }
+  :root[sizemode="maximized"] #navigator-toolbox{ margin-top: -2px }
+
+  @media screen and (min-resolution: 1.25dppx){
+    :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 9px !important; }
+  }
+  @media screen and (min-resolution: 1.5dppx){
+    :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 8px !important; }
+    :root[sizemode="maximized"] #navigator-toolbox{ margin-top: -1px }
+  }
+  @media screen and (min-resolution: 2dppx){
+    :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 7px !important; }
+  }
+}
+
+:root[sizemode="fullscreen"]{ margin-top: 0px !important; }
+
+#navigator-toolbox{
+  position: fixed !important;
+  display: block;
+  background-color: var(--lwt-accent-color,black) !important;
+  transition: transform 82ms 33ms linear, opacity 82ms 33ms linear !important;
+  transform-origin: top;
+  line-height: 5px;
+  z-index: 1;
+}
+
+#navigator-toolbox > *{ line-height: normal }
+
+#navigator-toolbox,
+#navigator-toolbox > *{
+  width: 100vw;
+  -moz-appearance: none !important;
+}
+
+#navigator-toolbox:not(:focus-within):not(:hover){
+  transform: rotateX(86deg);
+  opacity: 0;
+}
+
+:root[sizemode="maximized"] #navigator-toolbox:not(:focus-within):not(:hover){ transform: rotateX(89.5deg) }
+
+/* Don't apply transform before window has been fully created */
+:root:not([sessionrestored]) #navigator-toolbox{ transform:none !important }
+
+:root[customizing] #navigator-toolbox{
+  position: relative !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+#navigator-toolbox[inFullscreen] > #PersonalToolbar,
+#PersonalToolbar[collapsed="true"]{ display: none }
+
+/* Uncomment this if tabs toolbar is hidden with hide_tabs_toolbar.css */
+ /*#titlebar{ margin-bottom: -9px }*/
