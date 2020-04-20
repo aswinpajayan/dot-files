@@ -1,0 +1,22 @@
+Xft.autohint: false
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+
+! rofi
+rofi.modi: run,drun,window
+rofi.width: 50
+rofi.lines: 10
+rofi.columns: 3
+rofi.opacity: 50
+!                    bg       fg      altbg    hlbg     hlfg
+rofi.color-enabled: true
+rofi.color-normal: #282828, #ebdbb2, #282828, #ebdbb2, #282828
+rofi.color-urgent: #282828, #ebdbb2, #282828, #ebdbb2, #282828
+rofi.color-active: #282828, #ebdbb2, #282828, #ebdbb2, #282828
+rofi.color-window: #282828, #282828
+rofi.bw: 50
+rofi.location: center
+rofi.anchor: center
+rofi.padding: 100
+rofi.fuzzy: false
+
