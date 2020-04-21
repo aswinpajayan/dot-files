@@ -66,6 +66,8 @@ Of course you need a patched font for this to work.. I have uploaded Courier 10 
    - cmus as musicplayer 
    - zathura as document viewer
    - firefox with custom userChrome.css file
+   
+ Checkout awesome-copycats for awesome themes, Hollow theme(awesome-copycats)  with my tweaks
    ![AwesomeWM FIrst Rice](awesomewm_first_rice.png)
    
    ### GTK Theme
