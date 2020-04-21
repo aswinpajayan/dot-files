@@ -10,4 +10,4 @@ U need to have installed
  There is a closed issue regarding the same 
 
 
-![scr.png](src.png)
+![scr.png](scr.png)
