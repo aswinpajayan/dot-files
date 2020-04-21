@@ -9,3 +9,5 @@ U need to have installed
  as xbc-randr-dev > 1.12 is a requirement. Checkout out their git
  There is a closed issue regarding the same 
 
+
+![scr.png](src.png)
