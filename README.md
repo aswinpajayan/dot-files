@@ -68,7 +68,7 @@ Of course you need a patched font for this to work.. I have uploaded Courier 10 
    - firefox with custom userChrome.css file
    
  Checkout awesome-copycats for awesome themes, Hollow theme(awesome-copycats)  with my tweaks
-   ![AwesomeWM FIrst Rice](awesomewm_first_rice.png)
+   ![AwesomeWM Copycat holo theme](awesome-holo.png)
    
    ### GTK Theme
     - arc-darker
