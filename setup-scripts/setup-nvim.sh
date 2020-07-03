@@ -24,6 +24,7 @@ NC='\033[0m'
 QUERY_STRING="dpkg-query -W -f='\${Status}'"
 INSTALLED_OK="'install ok installed'"
 CUR_DIR=`pwd`
+WORK_DIR=${CUR_DIR/\/setup-scripts//}
 
 # function checks installation
 # installation is carried out if second variable is install
@@ -64,7 +65,7 @@ link_after_test(){
 		log_info "backing up $3/$2"
 		mv "$3/$2" "$3/copy_$2_bak"
 	fi
-if `ln -s "$CUR_DIR/$1" "$3/$2"` ; then 
+if `ln -s "$WORK_DIR/$1" "$3/$2"` ; then 
 	printf "$GREEN linked $1 to $3/$2 $NC\n"
 else
 	printf "$RED error linking $1 to $3/$2 $NC\n"
@@ -87,13 +88,6 @@ log_warn(){
 log_err(){
 	printf "$RED[Log:ERROR]: $IT $1 $NC\n"
 }
-
-decor_print "setting up userChrome"
-target_folder=`grep Default $HOME/.mozilla/firefox/profiles.ini | cut -d'=' -f2 | grep release`
-base_folder="$HOME/.mozilla/firefox/$target_folder/chrome"
-link_after_test "userChrome.css" "userChrome.css" $base_folder
-chmod  +rx $HOME/.mozilla/firefox/$target_folder/chrome/userChrome.css
-log_warn " set toolkit.legacyUserProfileCustomizations.stylesheets to true in firefox about config \n required for firefox versions > Firefox69"
 
 decor_print "Setting up Neovim"
 base_folder="$HOME/.config/nvim"
