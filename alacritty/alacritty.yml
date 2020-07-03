@@ -96,7 +96,7 @@ scrolling:
 # Some applications, like Emacs, rely on knowing about the width of a tab.
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 8
+tabspaces: 4
 
 # Font configuration (changes require restart)
 font:
@@ -136,7 +136,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 12.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -167,21 +167,21 @@ font:
   # effect.
   use_thin_strokes: false
   normal:
-    family: Courier 10 Pitch for Powerline
+    family: Courier 10 Pitch
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: Courier 10 Pitch for Powerline
+    family: Courier 10 Pitch
     # Style can be specified to pick a specific face.
-    # style: Bold
+    style: Bold
 
   # The italic font face
   italic:
-    family: Courier 10 Pitch for Powerline 
+    family: Courier 10 Pitch
     # Style can be specified to pick a specific face.
-    # style: Italic
+    style: Italic
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
