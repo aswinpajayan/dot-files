@@ -1,6 +1,7 @@
 filetype on
 filetype plugin on
 filetype plugin indent on
+syntax enable
 "install flake8 flake8-mypy flake8-bugbear flake8-comprehensions flake8-executable flake8-pyi mccabe pycodestyle pyflakes 
 "for makeing klinters work porperly
 "trying - pip install pylama as linter
@@ -22,36 +23,54 @@ Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'roxma/nvim-yarp'
 "Plug 'davidhalter/jedi-vim' alternative to ncm2-jedi
-Plug 'junegunn/seoul256.vim'
-Plug 'sjl/badwolf'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
 Plug 'neomake/neomake'
 Plug 'sickill/vim-pasta'
 Plug 'majutsushi/tagbar'
 Plug 'chrisbra/replay'
-Plug 'altercation/vim-colors-solarized'
-Plug 'sonph/onehalf' ,  {'rtp': 'vim/'}
-Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
-Plug 'ap/vim-css-color'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'lokaltog/vim-powerline'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kaicataldo/material.vim'
+
+
+Plug 'ap/vim-css-color'
 Plug 'vim-scripts/latex-support.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iberianpig/ranger-explorer.vim'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-"Plug 'nvie/vim-flake8' pylint is better
-"Plug 'dense-analysis/ale'
-Plug 'jaxbot/browserlink.vim'
 "Plugin for web dev
-"Distraction free mode for vim
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'jaxbot/browserlink.vim'
 "Plugins for ROS development
 Plug 'fmauch/vim_snippets_ros'
 Plug 'taketwo/vim-ros'
+Plug 'https://github.com/McSinyx/vim-octave.git', {'for': 'octave'}
+
+
+"Plugins for themes
+"Plug 'junegunn/seoul256.vim'
+Plug 'sjl/badwolf'
+"Plug 'kaicataldo/material.vim'
+Plug 'sainnhe/gruvbox-material'
+"Distraction free mode for vim
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
+
+"trying out vim lsp
+Plug 'ncm2/ncm2-vim-lsp'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+"Plug 'nvim-treesitter/nvim-treesitter'
+"Plug 'neovim/nvim-lsp'
+"use :LspInstallServer <server-name> to install a new server
+"Requires npm
+
+"Plug 'nvie/vim-flake8' pylint is better
+"Plug 'dense-analysis/ale'
 call plug#end()
 
    set mouse=a
@@ -62,12 +81,20 @@ call plug#end()
    set shiftwidth=4
    set expandtab
    set t_Co=256
-   colorscheme material
-   let g:material_theme_style = 'default'
+   "colorscheme material
+   "let g:material_theme_style = 'default'
+   
+   " For dark version.
+    set background=dark
+    " Set contrast.
+    " This configuration option should be placed before `colorscheme gruvbox-material`.
+    " Available values: 'hard', 'medium'(default), 'soft'
+    let g:gruvbox_material_background = 'medium'
+   colorscheme gruvbox-material
 "{{{------------------settings for cursorline highlight---------------- 
 set cursorline 
 hi CursorLine term=none cterm=bold ctermbg=black guibg=gray18
-hi Normal ctermbg=NONE guibg=NONE
+"hi Normal ctermbg=NONE guibg=NONE
 "--------------------------------------------------------------------}}}
    set foldmethod=syntax
 "{{{----------------using terminal in vim , terminal mode rebinds----
@@ -78,15 +105,30 @@ tnoremap <esc><esc> <c-\><c-n>
 "let g:ale_linters_explicit = 1
 "let g:ale_linters = {'python': ['flake8']}
 "let g:ale_python_flake8_executable = 'flake8-3'
-let g:flake8_quickfix_location="topleft"
+"let g:flake8_quickfix_location="topleft"
 "--------------------------------------------------------------------}}}
 "{{{-----------------python selection -------------------------------
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog='/home/aswin/miniconda3/envs/ml/bin/python'
+let g:python_host_prog='/usr/bin/python'
+let g:python3_host_prog='/usr/bin/python3'
 "--------------------------------------------------------------------}}}
 
+"some tweaks to speed up vim
+"https://stackoverflow.com/questions/9341768/vim-response-quite-slow/55501120#55501120
+set lazyredraw   " don't redraw everytime
+set synmaxcol=128  " avoid slow rendering for long lines
+syntax sync minlines=64  " faster syntax hl
+set regexpengine=1 "use newer regexpengine
 
 
+"language server settings 
+let g:lsp_highlights_enabled = 1
+let g:lsp_semantic_enabled = 1
+
+let g:lsp_settings = {
+\  'pyls': {
+\    'cmd': ['python', '-m', 'pyls']
+\  }
+\}
 
 let g:semshi#filetypes              =	['python'] 	
 let g:semshi#excluded_hl_groups     =	['local'] 
@@ -96,31 +138,31 @@ let g:semshi#simplify_markup        =   v:true
 let g:semshi#error_sign             =   v:true 	
 let g:semshi#error_sign_delay       =   1.5 
 let g:semshi#always_update_all_highlights=v:false 	
-let g:semshi#tolerate_syntax_errors =   v:true 
+"let g:semshi#tolerate_syntax_errors =   v:true 
 let g:semshi#update_delay_factor    =   0.0 	
 let g:semshi#self_to_attribute      =   v:true 	
 
 
 
-function MyCustomHighlights()
-    hi semshiGlobal      ctermfg=red guifg=#ff0000
-endfunction
-autocmd FileType python call MyCustomHighlights()
-hi semshiLocal           ctermfg=209 guifg=#ff875f
-hi semshiGlobal          ctermfg=214 guifg=#ffaf00
-hi semshiImported        ctermfg=214 guifg=#ffaf00 cterm=bold gui=bold
-hi semshiParameter       ctermfg=75  guifg=#5fafff
-hi semshiParameterUnused ctermfg=117 guifg=#87d7ff cterm=underline gui=underline
-hi semshiFree            ctermfg=218 guifg=#ffafd7
-hi semshiBuiltin         ctermfg=207 guifg=#ff5fff
-hi semshiAttribute       ctermfg=49  guifg=#00ffaf
-hi semshiSelf            ctermfg=249 guifg=#b2b2b2
-hi semshiUnresolved      ctermfg=226 guifg=#ffff00 cterm=underline gui=underline
-hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#d7005f
-
-hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
-hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
-sign define semshiError text= texthl=semshiErrorSign
+"function! MyCustomHighlights()
+"    hi semshiGlobal      ctermfg=red guifg=#ff0000
+"endfunction
+"autocmd FileType python call MyCustomHighlights()
+"hi semshiLocal           ctermfg=209 guifg=#ff875f
+"hi semshiGlobal          ctermfg=214 guifg=#ffaf00
+"hi semshiImported        ctermfg=214 guifg=#ffaf00 cterm=bold gui=bold
+"hi semshiParameter       ctermfg=75  guifg=#5fafff
+"hi semshiParameterUnused ctermfg=117 guifg=#87d7ff cterm=underline gui=underline
+"hi semshiFree            ctermfg=218 guifg=#ffafd7
+"hi semshiBuiltin         ctermfg=207 guifg=#ff5fff
+"hi semshiAttribute       ctermfg=49  guifg=#00ffaf
+"hi semshiSelf            ctermfg=249 guifg=#b2b2b2
+"hi semshiUnresolved      ctermfg=226 guifg=#ffff00 cterm=underline gui=underline
+"hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#d7005f
+"
+"hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
+"hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d70000
+"sign define semshiError text= texthl=semshiErrorSign
 
 
 " {{{ ---------------configuration settings fro neo make -------------
@@ -144,16 +186,17 @@ sign define semshiError text= texthl=semshiErrorSign
 "\]
 
 	call neomake#configure#automake('nrwi', 500)
+    let g:neomake_python_enabled_makers = ['pylint']
+    "let g:neomake_python_enabled_makers = ['pylama' , 'pylint']
+    "let g:neomake_python_pylama_maker = {
+    "    \ 'args': ['--format', 'parsable'],
+    "    \ 'errorformat': '%f:%l:%c: [%t] %m',
+    "    \ 'postprocess': function('neomake#makers#ft#python#PylamaEntryProcess'),
+    "    \ 'output_stream': 'stdout',
+    "    \ 'exe': '/home/aswin/.local/bin/pylama'
+    "    \ }
+
     " enable ncm2 for all buffers
-    "let g:neomake_python_enabled_makers = ['pylint']
-    let g:neomake_python_enabled_makers = ['pylama' , 'pylint']
-    let g:neomake_python_pylama_maker = {
-        \ 'args': ['--format', 'parsable'],
-        \ 'errorformat': '%f:%l:%c: [%t] %m',
-        \ 'postprocess': function('neomake#makers#ft#python#PylamaEntryProcess'),
-        \ 'output_stream': 'stdout',
-        \ 'exe': '/home/aswin/.local/bin/pylama'
-        \ }
     autocmd BufEnter * call ncm2#enable_for_buffer()
 
     " IMPORTANT: :help Ncm2PopupOpen for more information
@@ -180,7 +223,7 @@ sign define semshiError text= texthl=semshiErrorSign
 "
 "
 "To toggle tagbar
-map vt <Esc>:TagbarToggle<CR>Added sponsorship option
+map vt <Esc>:TagbarToggle<CR>
 "{{{-------------- clipboard operations-------
 nnoremap <c-y> "+yy
 nnoremap <c-p>  "+p
@@ -290,7 +333,8 @@ let g:neomake_warning_sign = {
        \ }
 let g:airline_detect_whitespace=0
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline_theme='material'
+"let g:airline_theme='material' "works only with material theme
+let g:airline_theme='gruvbox_material'
 
 """{{{-------------Ranger vim settings----------
 let g:ranger_explorer_keymap_edit    = '<C-o>'
@@ -340,7 +384,7 @@ let g:limelight_eop = '\ze\n\n'
 "   these are for C style 
 autocmd FileType c,cpp,lua,json,java,javascript,css  let g:limelight_bop='\zs{' | let g:limelight_eop='\ze}'
 autocmd FileType cpp  let g:limelight_bop='\zs{' | let g:limelight_eop='\ze}'
-autocmd FileType python  let g:limelight_bop='\zs:' | let g:limelight_eop='\ze\n\n'
+"autocmd FileType python  let g:limelight_bop='\zs:' | let g:limelight_eop='\ze\n\n'
 autocmd FileType html   let g:limelight_bop='\zs<div' | let g:limelight_eop='\zediv>$'
 "let g:limelight_bop = '\zs{'
 "let g:limelight_eop = '\ze}'
