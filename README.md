@@ -14,17 +14,30 @@ given in the repo
 ![nvim config](nvim_config.png)
 
 also note that the code completion with pytorch is working seemlessly.
-But i guess it can get even better with the floating popups in nvim 0.3 and coc.nvim
-for now it has
-  * ncm2 - neocomplete
-  * flake8 
-  * jedi language server
-  * Semshi for symantic highlighting
-  * neomake 
+Changed to vim-lsp for completion suggestions
+Key Features
+  * auto completeion               - ncm2 (buffer, path, languages)
+  * python code style enforcement  - pylint
+  * Multiple language support      - vim-lsp and vim-lsp-settings
+  * Semantic highlighting          - Semshi (python) , vim-lsp (for supported languages)
+  * check for errors as you type   - neomake
   
-Note that you might have to install flake8 seperately. Also take care you python environment using 
-`python3_host_prog`. It takes care of my conda env.
+You can use  [this script](setup-scripts/setup-nvim.sh) for setting up neovim on debian based OS.
+It will take care of installing and setting up dependencies 
+ - pynvim
+ - node version >= 10
+ - neovim >= 0.4
+ - pylint
+ - python-language-server
+ 
 
+Also take care you python environment using 
+`python3_host_prog`. It takes care of my conda env.
+or `python_host_prog` for python 2.7
+
+
+For getting completion for supported languages, run 
+:LspInstallServer <server-name>
 
 
 # Ranger config
