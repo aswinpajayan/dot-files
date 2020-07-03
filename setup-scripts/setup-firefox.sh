@@ -23,7 +23,7 @@ NC='\033[0m'
 QUERY_STRING="dpkg-query -W -f='\${Status}'"
 INSTALLED_OK="'install ok installed'"
 CUR_DIR=`pwd`
-WORKIN_DIR=${CUR_DIR/\/setup-scripts//}
+WORKING_DIR=${CUR_DIR/\/setup-scripts//}
 
 # function checks installation
 # installation is carried out if second variable is install
