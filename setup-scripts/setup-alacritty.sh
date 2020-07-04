@@ -90,6 +90,7 @@ log_err(){
 decor_print "setting up alacritty"
 log_info "installing patched font"
 sudo cp $WORKING_DIR/Courier-10-Pitch-for-Powerline.otf /usr/share/fonts/opentype/
+sudo cp $WORKING_DIR/Courier_10_BT_Pitch_powerline_Nerd.ttf /usr/share/fonts/truetype/
 sudo add-apt-repository ppa:mmstick76/alacritty -y
 check_installation "alacritty" "install"
 base_folder="$HOME/.config/alacritty"
