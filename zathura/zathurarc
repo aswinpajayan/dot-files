@@ -25,7 +25,7 @@ set guioptions 1
 
 # zathurarc-dark
 
-set font "anonymous pro 12"
+set font "Courier 12"
 set default-bg "#0" #00
 set default-fg "#F7F7F6" #01
 
@@ -60,8 +60,7 @@ set recolor-reverse-video "true"
 set recolor-keephue "true"
 
 
-set render-loading "false"
+#set render-loading "false"
 set scroll-step 50
-unmap f
-map f toggle_fullscreen
-map [fullscreen] f toggle_fullscreen
+map <C-b> feedkeys ":bmark "
+set database "plain"
