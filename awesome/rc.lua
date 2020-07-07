@@ -309,6 +309,7 @@ globalkeys = gears.table.join(
 
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.util.spawn("rofi -modi window,drun,ssh -show drun")end,
+    --awful.key({ modkey },            "r",     function () awful.util.spawn("dmenu_run")end,
               {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",

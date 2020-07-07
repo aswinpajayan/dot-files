@@ -1,5 +1,16 @@
+
+configuration {
+	display-drun: "  ";
+	display-run: "  ";
+	display-window: "  ";
+	display-ssh: "~#";
+	show-icons: false;
+	sidebar-mode: true;
+	font: "FreeSerif 12";
+}
 /**
  * Author: Primetoxinz
+ * Added Material flavour by Aswin
  */
 * {
     text-color:                  #a7a6a7;
@@ -36,15 +47,6 @@
     alternate-active-foreground: @foreground;
     selected-active-background:  @black;
     active-background:           @orange;
-}
-configuration {
-	display-drun: "  ";
-	display-run: "  ";
-	display-window: "  ";
-	display-ssh: "~#";
-	show-icons: false;
-	sidebar-mode: true;
-	font: "Courier 10 Pitch for Powerline 12";
 }
 #window {
     border:     0;

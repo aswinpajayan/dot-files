@@ -17,16 +17,16 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
 theme.icon_dir                                  = os.getenv("HOME") .. "/.config/awesome/icons"
-theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/wall.png"
+theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/wall.jpg"
 theme.font                                      = "FreeSerif 10"
-theme.taglist_font                              = "Courier 10 Pitch for Powerline 10"
+theme.taglist_font                              = "Courier 10"
 theme.fg_normal                                 = "#FFFFFF"
 theme.fg_focus                                  = "#0099CC"
 theme.bg_focus                                  = "#303030"
 theme.bg_normal                                 = "#242424"
 theme.fg_urgent                                 = "#CC9393"
 theme.bg_urgent                                 = "#006B8E"
-theme.border_width                              = dpi(3)
+theme.border_width                              = dpi(0)
 theme.border_normal                             = "#252525"
 theme.border_focus                              = "#0099CC"
 theme.taglist_fg_focus                          = "#FFFFFF"
@@ -98,6 +98,9 @@ theme.musicplr = string.format("%s -e ncmpcpp", awful.util.terminal)
 
 local markup = lain.util.markup
 local blue   = "#80CCE6"
+local orange = "#E48A4E"
+local grey   = "#dfbf8e"
+local red    = "#ea6962"
 local space3 = markup.font("Roboto 3", " ")
 
 -- Clock
@@ -201,14 +204,54 @@ function ()
 end)))
 
 -- Battery
+
+local battooltip = awful.tooltip({
+    margin_leftright = dpi(15),
+    margin_topbottom = dpi(12)
+})
+battooltip.wibox.fg = theme.fg_normal
+battooltip.textbox.font = theme.font
+battooltip.timeout = 0
+battooltip:set_shape(function(cr, width, height)
+    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - dpi(35))
+end)
 local bat = lain.widget.bat({
     settings = function()
-        bat_header = " Bat "
-        bat_p      = bat_now.perc .. " "
-        if bat_now.ac_status == 1 then
-            bat_p = bat_p .. "Plugged "
+        bat_header = "  "
+        bat_p      = tonumber(bat_now.perc) or 0
+        if bat_p <= 7 then
+            bat_header = "  "
+        elseif bat_p <= 20 then
+            bat_header = "  "
+        elseif bat_p <= 30 then
+            bat_header = "   "
+        elseif bat_p <= 40 then
+            bat_header = "  "
+        elseif bat_p <= 50 then
+            bat_header = "  "
+        elseif bat_p <= 60 then
+            bat_header = "  "
+        elseif bat_p <= 70 then
+            bat_header = "  "
+        elseif bat_p <= 80 then
+            bat_header = "  "
+        elseif bat_p <= 90 then
+            bat_header = "  "
+        elseif bat_p < 100 then
+            bat_header = "  "
+        else
+            bat_header = "  " 
         end
-        widget:set_markup(markup.font(theme.font, markup(blue, bat_header) .. bat_p))
+        
+        if bat_now.ac_status == 1 then
+            bat_header = bat_header .. " "
+            widget:set_markup(markup.font(theme.taglist_font, markup(blue, bat_header) .. bat_p))
+        elseif bat_p  >= 20 then 
+            widget:set_markup(markup.font(theme.taglist_font, markup(grey, bat_header) .. bat_p))
+        else
+            widget:set_markup(markup.font(theme.taglist_font, markup(red, bat_header) .. bat_p))
+        end
+        battooltip:set_markup(string.format("\n%s%%, %s", bat_p, bat_now.time))
     end
 })
 
@@ -393,7 +436,7 @@ awful.tag(names, s, layouts)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             --theme.mail.widget,
-            --bat.widget,
+            bat.widget,
             spr_right,
             musicwidget,
             bar,
