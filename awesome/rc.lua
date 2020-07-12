@@ -23,7 +23,7 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 ---{{{ some variables 
-lock_script = string.format("%s/i3lock-color/lock.sh",os.getenv("HOME"))
+lock_script = string.format("%s/.local/bin/lock_script.sh",os.getenv("HOME"))
 theme_path = string.format("%s/.config/awesome/holo_theme.lua",os.getenv("HOME"))
 
 -- {{{ Error handling
@@ -221,13 +221,24 @@ globalkeys = gears.table.join(
          naughty.notify(common)
      end,
      {description = "mpc on/off", group = "widgets"}),
-
-    awful.key({}, "#122", function () awful.util.spawn("amixer set Master 2-") end),
-    awful.key({}, "#123", function () awful.util.spawn("amixer set Master 2+") end),
+    -- Volume control 
+    awful.key({}, "#122", function () awful.util.spawn("amixer -D pulse sset Master 5%-") end),
+    awful.key({}, "#123", function () awful.util.spawn("amixer -D pulse sset Master 5%+") end),
     awful.key({}, "#121", function () awful.util.spawn("amixer -D pulse set Master 1+ toggle") end),
 
-    ---------- gnome-screenshot-----------
+    -- Brightness Control
+    awful.key({"Shift"}, "#123", function () awful.util.spawn("brightnessctl set +10") end,
+    {description = "decrease brightness", group = "screen"}),
+    awful.key({"Shift"}, "#122", function () awful.util.spawn("brightnessctl set 10-") end,
+    {description = "increase brightness", group = "screen"}),
 
+    -- Naughty Test
+    -- awful.key({"Shift"}, "o", function () require('naughty').notification { message = '1 pressed'} end),
+
+    --Lock Screen 
+    awful.key({modkey, }, "l", function () awful.util.spawn(string.format("bash %s",lock_script)) end),
+
+    -- Gnome-screenshot
             awful.key({            }, "Print", function () awful.spawn("gnome-screenshot") end,
                       {description = "take screenshot", group = "launcher"}),
     awful.key({ modkey        }, "z",      
@@ -279,7 +290,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+    awful.key({ modkey,           }, ";",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
@@ -564,11 +575,13 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+awful.mouse.snap.edge_enabled = false
+
 -- }}}
 -- User configs - Autostart---
 awful.spawn.with_shell("compton")
 awful.util.spawn_with_shell('nm-applet')
 awful.util.spawn('xsettingsd')
-awful.util.spawn_with_shell(string.format("%s/.config/awesome/locker.sh",os.getenv("HOME")))
+--awful.util.spawn_with_shell(string.format("%s/.local/bin/auto_locker.sh",os.getenv("HOME")))
 --awful.spawn.with_shell("nitrogen --restore")
 -- }}}

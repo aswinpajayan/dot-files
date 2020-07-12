@@ -116,3 +116,13 @@ log_info "installing rofi"
 check_installation "git" "install"
 link_after_test "Pop-Material-like.rasi" "Pop-Material-like.rasi" "$HOME/.local/share/rofi/themes"
 log_info "run rofi-theme-selector to select a theme"
+
+log_info "install gnome-screensaver and xautolock"
+check_installation "gnome-screensaver" "install"
+check_installation "xautolock" "install"
+check_installation "brightnessctl" "install"
+sudo usermod -aG video $USER
+sudo echo '"ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"' > /etc/udev/rules.d/90-backlight.rules
+sudo echo '"ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"' >> /etc/udev/rules.d/90-backlight.rules
+sudo udevadm control -R
+sudo udevadm trigger -c add -s backlight

@@ -26,9 +26,11 @@ theme.bg_focus                                  = "#303030"
 theme.bg_normal                                 = "#242424"
 theme.fg_urgent                                 = "#CC9393"
 theme.bg_urgent                                 = "#006B8E"
-theme.border_width                              = dpi(0)
+theme.border_width                              = dpi(3)
 theme.border_normal                             = "#252525"
-theme.border_focus                              = "#0099CC"
+--theme.border_focus                              = "#0099CC"
+--theme.border_focus                              = "#07357d"
+theme.border_focus                              = "#4A4A4A"
 theme.taglist_fg_focus                          = "#FFFFFF"
 theme.tasklist_bg_normal                        = "#222222"
 theme.tasklist_fg_focus                         = "#4CB7DB"
@@ -205,16 +207,6 @@ end)))
 
 -- Battery
 
-local battooltip = awful.tooltip({
-    margin_leftright = dpi(15),
-    margin_topbottom = dpi(12)
-})
-battooltip.wibox.fg = theme.fg_normal
-battooltip.textbox.font = theme.font
-battooltip.timeout = 0
-battooltip:set_shape(function(cr, width, height)
-    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - dpi(35))
-end)
 local bat = lain.widget.bat({
     settings = function()
         bat_header = "  "
@@ -251,7 +243,6 @@ local bat = lain.widget.bat({
         else
             widget:set_markup(markup.font(theme.taglist_font, markup(red, bat_header) .. bat_p))
         end
-        battooltip:set_markup(string.format("\n%s%%, %s", bat_p, bat_now.time))
     end
 })
 
@@ -265,7 +256,7 @@ theme.fs = lain.widget.fs({
 -- ALSA volume bar
 theme.volume = lain.widget.alsabar({
     notification_preset = { font = "FreeSerif 9"},
-    --togglechannel = "IEC958,3",
+    togglechannel = "IEC958,0",
     width = dpi(80), height = dpi(10), border_width = dpi(0),
     colors = {
         background = "#383838",

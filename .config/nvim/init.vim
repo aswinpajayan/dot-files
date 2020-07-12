@@ -51,8 +51,9 @@ Plug 'https://github.com/McSinyx/vim-octave.git', {'for': 'octave'}
 "Plugins for themes
 "Plug 'junegunn/seoul256.vim'
 Plug 'sjl/badwolf'
-"Plug 'kaicataldo/material.vim'
+Plug 'kaicataldo/material.vim'
 Plug 'sainnhe/gruvbox-material'
+Plug 'joshdick/onedark.vim'
 "Distraction free mode for vim
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -90,7 +91,8 @@ call plug#end()
     " This configuration option should be placed before `colorscheme gruvbox-material`.
     " Available values: 'hard', 'medium'(default), 'soft'
     let g:gruvbox_material_background = 'medium'
-   colorscheme gruvbox-material
+    " colorscheme gruvbox-material
+    colorscheme onedark
 "{{{------------------settings for cursorline highlight---------------- 
 set cursorline 
 hi CursorLine term=none cterm=bold ctermbg=black guibg=gray18
@@ -334,7 +336,8 @@ let g:neomake_warning_sign = {
 let g:airline_detect_whitespace=0
 let g:airline#extensions#whitespace#enabled = 0
 "let g:airline_theme='material' "works only with material theme
-let g:airline_theme='gruvbox_material'
+"let g:airline_theme='gruvbox_material'
+let g:airline_theme='onedark'
 
 """{{{-------------Ranger vim settings----------
 let g:ranger_explorer_keymap_edit    = '<C-o>'
@@ -355,8 +358,13 @@ nnoremap bt <Esc>o<script src='http://127.0.0.1:9001/js/socket.js'></script><CR>
 """----------------latex autocmd----------------
 autocmd BufWritePost,FileWritePost *.tex :silent !pdflatex *.tex
 
-"""---distraction free mode for vim ---Goyo-----
+"""----------------cpp autocmd----------------
+autocmd BufWritePost,FileWritePost *.cpp  :silent !g++ *.cpp -o runfile
 let mapleader=" "
+map <leader>c <Esc>0i//<Esc>
+
+
+"""---distraction free mode for vim ---Goyo-----
 map <leader><ENTER> :Goyo<CR>
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!

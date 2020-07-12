@@ -18,13 +18,16 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 90
+    lines: 30
 
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
+  position:
+      x: 500
+      y: 200
   #position:
   #  x: 0
   #  y: 0
@@ -66,7 +69,7 @@ window:
   #title: Alacritty
 
   # Window class (Linux only):
-  #class: Alacritty
+  class: Alacritty
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -187,85 +190,115 @@ font:
 draw_bold_text_with_bright_colors: true
 
 
+schemes:
 # Colors (Material Theme)
-#colors:
-#  # Default colors
-#  primary:
-#    background: '0x1e282d'
-#    foreground: '0xc4c7d1'
-#
-#    # Bright and dim foreground colors
-#    #
-#    # The dimmed foreground color is calculated automatically if it is not present.
-#    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-#    # is `false`, the normal foreground color will be used.
-#    #dim_foreground: '0x9a9a9a'
-#    #bright_foreground: '0xffffff'
-#
-#  # Cursor colors
-#  #
-#  # Colors which should be used to draw the terminal cursor. If these are unset,
-#  # the cursor color will be the inverse of the cell color.
-#  #cursor:
-#  #  text: '0x000000'
-#  #  cursor: '0xffffff'
-#
-#  # Selection colors
-#  #
-#  # Colors which should be used to draw the selection area. If selection
-#  # background is unset, selection color will be the inverse of the cell colors.
-#  # If only text is unset the cell text color will remain the same.
-#  #selection:
-#  #  text: '0xeaeaea'
-#  #  background: '0x404040'
-#
-#  # Normal colors
-#  normal:
-#    black:   '0x666666'
-#    red:     '0xeb606b'
-#    green:   '0xc3e88d'
-#    yellow:  '0xf7eb95'
-#    blue:    '0x80cbc4'
-#    magenta: '0xff2f90'
-#    cyan:    '0xaeddff'
-#    white:   '0xffffff'
-#
-#  # Bright colors
-#  bright:
-#    black:   '0xff262b'
-#    red:     '0xeb606b'
-#    green:   '0xc3e88d'
-#    yellow:  '0xf7eb95'
-#    blue:    '0x7dc6bf'
-#    magenta: '0x6c71c4'
-#    cyan:    '0x35434d'
-#    white:   '0xffffff'
-#
+    material : &material
+ # Default colors
+        primary:
+          background: '0x1e282d'
+          foreground: '0xc4c7d1'
+
+          # Bright and dim foreground colors
+          #
+          # The dimmed foreground color is calculated automatically if it is not present.
+          # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+          # is `false`, the normal foreground color will be used.
+          #dim_foreground: '0x9a9a9a'
+          #bright_foreground: '0xffffff'
+
+        # Cursor colors
+        #
+        # Colors which should be used to draw the terminal cursor. If these are unset,
+        # the cursor color will be the inverse of the cell color.
+        #cursor:
+        #  text: '0x000000'
+        #  cursor: '0xffffff'
+
+        # Selection colors
+        #
+        # Colors which should be used to draw the selection area. If selection
+        # background is unset, selection color will be the inverse of the cell colors.
+        # If only text is unset the cell text color will remain the same.
+        #selection:
+        #  text: '0xeaeaea'
+        #  background: '0x404040'
+
+        # Normal colors
+        normal:
+          black:   '0x666666'
+          red:     '0xeb606b'
+          green:   '0xc3e88d'
+          yellow:  '0xf7eb95'
+          blue:    '0x80cbc4'
+          magenta: '0xff2f90'
+          cyan:    '0xaeddff'
+          white:   '0xffffff'
+
+        # Bright colors
+        bright:
+          black:   '0xff262b'
+          red:     '0xeb606b'
+          green:   '0xc3e88d'
+          yellow:  '0xf7eb95'
+          blue:    '0x7dc6bf'
+          magenta: '0x6c71c4'
+          cyan:    '0x35434d'
+          white:   '0xffffff'
+
 # Colors (Gruvbox Material Dark Medium)
-colors:
-  primary:
-    background: '0x282828'
-    foreground: '0xdfbf8e'
+    gruvbox_material: &gruvbox_material
+        primary:
+          background: '0x282828'
+          foreground: '0xdfbf8e'
 
-  normal:
-    black:   '0x665c54'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe78a4e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+        normal:
+          black:   '0x665c54'
+          red:     '0xea6962'
+          green:   '0xa9b665'
+          yellow:  '0xe78a4e'
+          blue:    '0x7daea3'
+          magenta: '0xd3869b'
+          cyan:    '0x89b482'
+          white:   '0xdfbf8e'
 
-  bright:
-    black:   '0x928374'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe3a84e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+        bright:
+          black:   '0x928374'
+          red:     '0xea6962'
+          green:   '0xa9b665'
+          yellow:  '0xe3a84e'
+          blue:    '0x7daea3'
+          magenta: '0xd3869b'
+          cyan:    '0x89b482'
+          white:   '0xdfbf8e'
+          
+    flat_remix: &flat_remix
+        primary:
+          background: '0x272a34'
+          foreground: '0xFFFFFF'
+
+        normal:
+            black:   '0x1F2229'           # Black
+            red:     '0xEC0101'           # Light Red
+            green:   '0x47D4B9'           # Light Green
+            yellow:  '0xFF8A18'           # Light Yellow
+            blue:    '0x277FFF'           # Light Blue
+            magenta: '0xD71655'           # Light Magenta
+            cyan:    '0x05A1F7'           # Light Cyan
+            white:   '0xFFFFFF'           # White
+           
+
+        bright:
+            black:     	'0x1F2229'           # Black
+            red:       	'0xD41919'           # Red
+            green:     	'0x5EBDAB'           # Green
+            yellow:    	'0xFEA44C'           # Yellow
+            blue:      	'0x367bf0'           # Blue
+            magenta:   	'0xBF2E5D'           # Magenta
+            cyan:      	'0x49AEE6'           # Cyan
+            white:      '0xFFFFFF' 
+
+#color scheme selection
+colors: *material
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
@@ -288,7 +321,7 @@ colors:
   # Example:
   #   `- { index: 16, color: '0xff00ff' }`
   #
-  indexed_colors: []
+indexed_colors: []
 
 # Visual Bell
 #
