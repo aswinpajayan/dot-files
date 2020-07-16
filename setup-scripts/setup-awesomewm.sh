@@ -126,3 +126,6 @@ sudo echo '"ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chgrp video /sys/c
 sudo echo '"ACTION=="add", SUBSYSTEM=="backlight", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"' >> /etc/udev/rules.d/90-backlight.rules
 sudo udevadm control -R
 sudo udevadm trigger -c add -s backlight
+
+check_installation "compton" "install"
+link_after_test "compton.conf" "compton.conf" "$HOME/.config"
