@@ -17,7 +17,7 @@ set showcmd
 
 call plug#begin()
 Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-jedi'
+"Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-ultisnips'
@@ -61,10 +61,6 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 
 "trying out vim lsp
-Plug 'ncm2/ncm2-vim-lsp'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
 "Plug 'nvim-treesitter/nvim-treesitter'
 "Plug 'neovim/nvim-lsp'
 "use :LspInstallServer <server-name> to install a new server
@@ -140,7 +136,7 @@ let g:semshi#simplify_markup        =   v:true
 let g:semshi#error_sign             =   v:true 	
 let g:semshi#error_sign_delay       =   1.5 
 let g:semshi#always_update_all_highlights=v:false 	
-"let g:semshi#tolerate_syntax_errors =   v:true 
+let g:semshi#tolerate_syntax_errors =   v:true 
 let g:semshi#update_delay_factor    =   0.0 	
 let g:semshi#self_to_attribute      =   v:true 	
 
@@ -198,6 +194,7 @@ let g:semshi#self_to_attribute      =   v:true
     "    \ 'exe': '/home/aswin/.local/bin/pylama'
     "    \ }
 
+    let g:neomake_highlight_lines=0
     " enable ncm2 for all buffers
     autocmd BufEnter * call ncm2#enable_for_buffer()
 
@@ -331,8 +328,8 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:neomake_warning_sign = {
        \   'text': '',
-       \   'texthl': 'NeomakeWarningSign',
        \ }
+"\   'texthl': 'NeomakeWarningSign',
 let g:airline_detect_whitespace=0
 let g:airline#extensions#whitespace#enabled = 0
 "let g:airline_theme='material' "works only with material theme

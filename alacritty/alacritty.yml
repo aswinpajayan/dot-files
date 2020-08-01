@@ -139,7 +139,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 9.5
+  size: 9
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -168,7 +168,7 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: true
+  use_thin_strokes: false
   normal:
     family: Courier 10 Pitch
     # Style can be specified to pick a specific face.
@@ -182,7 +182,7 @@ font:
 
   # The italic font face
   italic:
-    family: Courier 10 Pitch
+    family: Courier
     # Style can be specified to pick a specific face.
     style: Italic
 
@@ -249,7 +249,7 @@ schemes:
     gruvbox_material: &gruvbox_material
         primary:
           background: '0x282828'
-          foreground: '0xdfbf8e'
+          foreground: '0xefeeee'
 
         normal:
           black:   '0x665c54'
@@ -298,7 +298,7 @@ schemes:
             white:      '0xFFFFFF' 
 
 #color scheme selection
-colors: *material
+colors: *gruvbox_material
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
