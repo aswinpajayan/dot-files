@@ -6,3 +6,4 @@ alias ros_start='echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc && echo 
 alias ros_end="sed -i '/melodic/d' ~/.bashrc && sed -i '/TURTLEBOT3_MODEL/d' ~/.bashrc"
 alias devel='source ~/catkin_ws/devel/setup.bash'
 alias ros_make='cd ~/catkin_ws && catkin_make && cd -'
+alias pdf_tabs='tabbed -c zathura -e'

@@ -103,11 +103,13 @@ check_installation "cmus" "install"
 
 
 link_after_test "awesome/rc.lua" "rc.lua" "$BASE_FOLDER"
+link_after_test "awesome/scratch.lua" "scratch.lua" "$BASE_FOLDER"
 link_after_test "awesome/holo_theme.lua" "holo_theme.lua" "$BASE_FOLDER"
 link_after_test "awesome/wall.jpg" "wall.jpg" $BASE_FOLDER
 link_after_test "awesome/icons" "icons" $BASE_FOLDER
 link_after_test "awesome/theme.lua" "theme.lua" "$BASE_FOLDER"
 link_after_test "awesome/locker.sh" "locker.sh" "$BASE_FOLDER"
+link_after_test "awesome/scratch.lua" "scratch.lua" "$BASE_FOLDER"
 git clone https://github.com/lcpz/lain.git "$BASE_FOLDER/lain/"
 
 log_warn "awesomewm may not work will touchpad"

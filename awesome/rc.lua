@@ -22,6 +22,11 @@ require("awful.hotkeys_popup.keys")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
+-- Scratchpad terminal
+local scratch = require("scratch")
+screen_width = awful.screen.focused().geometry.width
+screen_height = awful.screen.focused().geometry.height
+
 ---{{{ some variables 
 lock_script = string.format("%s/.local/bin/lock_script.sh",os.getenv("HOME"))
 theme_path = string.format("%s/.config/awesome/holo_theme.lua",os.getenv("HOME"))
@@ -234,9 +239,11 @@ globalkeys = gears.table.join(
 
     -- Naughty Test
     -- awful.key({"Shift"}, "o", function () require('naughty').notification { message = '1 pressed'} end),
-
+    -- Scratchpad 
+    awful.key({ modkey }, "d", function () scratch.toggle("alacritty --class scratch", { instance = "scratch" }) end),
     --Lock Screen 
-    awful.key({modkey, }, "l", function () awful.util.spawn(string.format("bash %s",lock_script)) end),
+    awful.key({modkey, }, "l", function () awful.util.spawn(string.format("bash %s",lock_script)) end,
+    {description = "toggle scratchpad terminal", group = "client"}),
 
     -- Gnome-screenshot
             awful.key({            }, "Print", function () awful.spawn("gnome-screenshot") end,
@@ -460,7 +467,28 @@ awful.rules.rules = {
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
-
+    -- Scratchpad
+      {
+        rule_any = {
+            instance = { "scratch" },
+            class = { "scratch" },
+        },
+        properties = {
+            skip_taskbar = false,
+            floating = true,
+            ontop = false,
+            minimized = true,
+            sticky = false,
+            width = screen_width * 0.7,
+            height = screen_height * 0.75
+        },
+        callback = function (c)
+            awful.placement.centered(c,{honor_padding = true, honor_workarea=true})
+            gears.timer.delayed_call(function()
+                c.urgent = false
+            end)
+        end
+    },
     -- Floating clients.
     { rule_any = {
         instance = {
