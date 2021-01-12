@@ -327,7 +327,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:neomake_warning_sign = {
-       \   'text': '',
+       \   'text': '',
        \ }
 "\   'texthl': 'NeomakeWarningSign',
 let g:airline_detect_whitespace=0

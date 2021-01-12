@@ -7,3 +7,5 @@ alias ros_end="sed -i '/melodic/d' ~/.bashrc && sed -i '/TURTLEBOT3_MODEL/d' ~/.
 alias devel='source ~/catkin_ws/devel/setup.bash'
 alias ros_make='cd ~/catkin_ws && catkin_make && cd -'
 alias pdf_tabs='tabbed -c zathura -e'
+
+alias quartus='/opt/intelFPGA_lite/20.1/quartus/bin/quartus'

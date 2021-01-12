@@ -23,6 +23,9 @@ set window-title-basename 1
 #set zoom-min 10
 set guioptions 1
 
+# bookmarks settings
+set database "plain"
+# set sandbox "none"
 # zathurarc-dark
 
 set font "Courier 12"

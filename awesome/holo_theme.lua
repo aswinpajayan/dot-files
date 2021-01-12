@@ -236,7 +236,7 @@ local bat = lain.widget.bat({
         end
         
         if bat_now.ac_status == 1 then
-            bat_header = bat_header .. " "
+            bat_header = "" .. bat_header
             widget:set_markup(markup.font(theme.taglist_font, markup(blue, bat_header) .. bat_p))
         elseif bat_p  >= 20 then 
             widget:set_markup(markup.font(theme.taglist_font, markup(grey, bat_header) .. bat_p))
@@ -377,7 +377,7 @@ function theme.at_screen_connect(s)
     --s.quake = lain.util.quake({ app = awful.util.terminal })
 
 
-    local names = { "", "" , "" , "" , "華", "", "", "", ""}
+    local names = { "", "" , "" , "" , "華", "", "", "", ""}
     local l = awful.layout.suit
     local layouts = { l.tile, l.spiral, l.floating, l.fair, l.max, l.floating, l.floating, l.floating, l.fair }
 awful.tag(names, s, layouts)
