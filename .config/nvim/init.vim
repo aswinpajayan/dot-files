@@ -1,4 +1,4 @@
-filetype on
+filetype  on
 filetype plugin on
 filetype plugin indent on
 syntax enable
@@ -39,7 +39,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'ap/vim-css-color'
 Plug 'vim-scripts/latex-support.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'iberianpig/ranger-explorer.vim'
+" Plug 'iberianpig/ranger-explorer.vim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
 "Plugin for web dev
 Plug 'jaxbot/browserlink.vim'
 "Plugins for ROS development
@@ -57,12 +59,15 @@ Plug 'joshdick/onedark.vim'
 "Distraction free mode for vim
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 
 "trying out vim lsp
 "Plug 'nvim-treesitter/nvim-treesitter'
-"Plug 'neovim/nvim-lsp'
+Plug 'ncm2/ncm2-vim-lsp'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 "use :LspInstallServer <server-name> to install a new server
 "Requires npm
 
@@ -128,17 +133,17 @@ let g:lsp_settings = {
 \  }
 \}
 
-let g:semshi#filetypes              =	['python'] 	
-let g:semshi#excluded_hl_groups     =	['local'] 
-let g:semshi#mark_selected_nodes    =  	1 	
-let g:semshi#no_default_builtin_highlight=v:true 	
-let g:semshi#simplify_markup        =   v:true 	
-let g:semshi#error_sign             =   v:true 	
-let g:semshi#error_sign_delay       =   1.5 
-let g:semshi#always_update_all_highlights=v:false 	
-let g:semshi#tolerate_syntax_errors =   v:true 
-let g:semshi#update_delay_factor    =   0.0 	
-let g:semshi#self_to_attribute      =   v:true 	
+"let g:semshi#filetypes              =	['python'] 	
+"let g:semshi#excluded_hl_groups     =	['local'] 
+"let g:semshi#mark_selected_nodes    =  	1 	
+"let g:semshi#no_default_builtin_highlight=v:true 	
+"let g:semshi#simplify_markup        =   v:true 	
+"let g:semshi#error_sign             =   v:true 	
+"let g:semshi#error_sign_delay       =   1.5 
+"let g:semshi#always_update_all_highlights=v:false 	
+"let g:semshi#tolerate_syntax_errors =   v:true 
+"let g:semshi#update_delay_factor    =   0.0 	
+"let g:semshi#self_to_attribute      =   v:true 	
 
 
 
@@ -342,10 +347,10 @@ let g:ranger_explorer_keymap_tabedit = '<C-t>'
 let g:ranger_explorer_keymap_split   = '<C-s>'
 let g:ranger_explorer_keymap_vsplit  = '<C-v>'
 let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
-nnoremap rnc <Esc>:RangerOpenCurrentDir<CR>
-nnoremap rnp <Esc>:RangerOpenProjectRootDir<CR>
+"let g:loaded_netrw       = 0
+"let g:loaded_netrwPlugin = 0
+nnoremap cn <Esc>:RangerCurrentDirectoryNewTab<CR>
+nnoremap rn <Esc>:Ranger<CR>
 
 """------------------------------------------}}}
 ""------------Congfig for browserlink---------"""
