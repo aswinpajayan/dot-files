@@ -150,7 +150,7 @@ if [[ "$check_install" != "$INSTALLED_OK" ]]; then
     sudo snap install node --channel=12/stable --classic
 fi
 if [[ `node --version` > 10 ]]; then
-    npm install -g neovim
+    sudo npm install -g neovim
     log_info "run :LspInstallServer on supported filetypes for code completion"
 else
     log_err "couldnt install node 10. please install node >= 10 for language server support"
