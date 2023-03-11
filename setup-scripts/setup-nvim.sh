@@ -146,8 +146,8 @@ check_installation "exuberant-ctags" "install"
 check_installation "pylint" "install"
 check_install=`$QUERY_STRING npm`
 if [[ "$check_install" != "$INSTALLED_OK" ]]; then
-    log_info "installing npm version 12"
-    sudo snap install node --channel=12/stable --classic
+    log_info "installing npm"
+    sudo snap install node --channel=stable --classic
 fi
 if [[ `node --version` > 10 ]]; then
     sudo npm install -g neovim
