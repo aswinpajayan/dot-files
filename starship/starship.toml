@@ -1,0 +1,130 @@
+# ~/.config/starship.toml
+
+[battery]
+full_symbol = "🔋"
+# charging_symbol = "🔌"
+# discharging_symbol = "⚡"
+charging_symbol = ""
+discharging_symbol = ""
+format='[$symbol]($style) '
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+discharging_symbol = ""
+
+[[battery.display]]
+threshold = 50
+style = "bold yellow"
+discharging_symbol = " "
+
+[[battery.display]]
+threshold = 80
+style = "bold yellow"
+discharging_symbol = " "
+
+[[battery.display]]
+threshold = 100
+style = "bold green"
+discharging_symbol = " "
+
+[character]
+error_symbol = "[](bold red) "
+success_symbol = '[➜](bold green) '
+
+[cmd_duration]
+min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
+format = " took [$duration]($style)"
+
+[directory]
+truncation_length = 5
+format = "[$path]($style)[$lock_symbol]($lock_style)"
+truncation_symbol='...'
+home_symbol='~'
+
+[git_branch]
+format = " [$symbol$branch]($style) "
+symbol = " "
+style = "bold purple"
+
+[git_commit]
+commit_hash_length = 8
+style = "bold white"
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "🏎️ 💨 ×${count} "
+behind = "🐢 ×${count} "
+diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count} "
+untracked = "🛤️  ×${count} "
+stashed = "📦 "
+modified = "📝 ×${count} "
+staged = "🗃️  ×${count} "
+renamed = "📛 ×${count} "
+deleted = "🗑️  ×${count} "
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+[hostname]
+ssh_only = false
+# ssh_symbol = ''
+# format = "[$ssh_symbol$hostname]($style)  "
+format = "[:$ssh_symbol$hostname ]($style)"
+trim_at = "."
+style = "bold white"
+disabled = false
+
+[julia]
+format = "[$symbol$version]($style) "
+symbol = "ஃ "
+style = "bold green"
+
+[memory_usage]
+format = "$symbol[${ram}( | ${swap})]($style) "
+threshold = 70
+style = "bold dimmed white"
+disabled = false
+
+[package]
+disabled = true
+
+[python]
+format = "[ $symbol ]($style) "
+style = "bold green"
+# symbol = ""
+symbol = " "
+
+[rust]
+format = "[$symbol$version]($style) "
+style = "bold green"
+
+[time]
+time_format = "%T"
+format = "🕙 $time($style) "
+style = "bright-white"
+disabled = false
+
+[typst]
+format = "[$symbol($version)]($style)"
+style = "bold #239dae"
+
+[username]
+show_always = true
+format = '[:$user ](bold fg:138)'
+
+[nodejs]
+format = "[  $version](bold green)"
+
+# ~/.config/starship.toml
+
+[conda]
+format = ' [\($symbol$environment\)](bold fg:117) '
+ignore_base = false
+
+# ~/.config/starship.toml
+
+[lua]
+format = '[   $version](bold fg:33) '
